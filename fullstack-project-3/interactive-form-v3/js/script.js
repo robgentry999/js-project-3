@@ -194,25 +194,30 @@ function isValidCvv () {
 
 function isValidPayment () {
     if (paymentselect.value === 'credit-card') {
-        if (isValidCardNumber() && isValidCvv() && isValidZipCode()) {
-            return true
-        }       
+        isValidCardNumber()
+        isValidCvv()
+        isValidZipCode()  
+        }  
+    return true     
     }
-}
+
     
  // Event listener for submitting the form   
 
 form.addEventListener('submit', (e) => {
     
-    if ( isValidName() && isValidEmail() && isValidActivities() && isValidPayment()) {
-        console.log('form submited');
+    if (isValidName() && isValidEmail() && isValidActivities() && isValidPayment() && isValidCvv() && isValidZipCode()) {
+        alert('form submited');
+        e.preventDefault();
     } else {
         e.preventDefault();
         isValidName();
         isValidEmail(); 
         isValidPayment();
         isValidActivities();
-        console.log('Incorrect user inputs');
+        isValidCvv();
+        isValidZipCode(); 
+        alert('Incorrect user inputs');
     }
 });
 

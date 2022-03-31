@@ -36,11 +36,11 @@ console.log(jspuns);
 designSelect.addEventListener('change', (e) => {
 
 for(let i = 1; i < childColor.length; i++){
-    let targ = e.target.value
+    let targetValue = e.target.value
     let child = childColor[i];
     let dataTheme = child.getAttribute('data-theme');
 
-    if(dataTheme === targ){
+    if(dataTheme === targetValue){
         shirtColor.style.display = "block";
         child.hidden = false; 
         child.setAttribute('data-theme', dataTheme)
@@ -108,10 +108,12 @@ paymentselect.addEventListener('change', (e) => {
 //const registergroup = document.getElementById('activities');
 const userCard = document.getElementById('cc-num');
 const userZip = document.getElementById('zip');
-const userCcv = document.getElementById('ccv');
+const userCcv = document.getElementById('cvv');
 const userEmail = document.getElementById('email');
 const form = document.querySelector('form');
+
 //STEP 8
+//for each funtion, tests if user input matches with the regex, and adds error message if wrong
 function isValidName () {
     const nameRegEx = /^[\w]+\s*[\w]+$/.test(userName.value);
     if (nameRegEx === true) {
@@ -183,14 +185,16 @@ function isValidCvv () {
     if (CvvRegEx === true) {
         userCcv.parentNode.className='valid';
         userCcv.parentNode.lastElementChild.style.display = 'none';
-        return zipRegEx
+        return CvvRegEx
     } else {
         userCcv.parentNode.className='not-valid';
         userCcv.parentNode.lastElementChild.style.display = 'block';
         userCcv.parentNode.lastElementChild.textContent = 'Please insert valid ccv'
-        return zipRegEx
+        return CvvRegEx
     }
 }
+
+//tests for payment section, returns true if all payment items are correct
 
 function isValidPayment () {
     if (paymentselect.value === 'credit-card') {
@@ -206,9 +210,8 @@ function isValidPayment () {
 
 form.addEventListener('submit', (e) => {
     
-    if (isValidName() && isValidEmail() && isValidActivities() && isValidPayment() && isValidCvv() && isValidZipCode()) {
+    if (isValidName() && isValidEmail() && isValidActivities() && isValidPayment()) {
         alert('form submited');
-        e.preventDefault();
     } else {
         e.preventDefault();
         isValidName();
@@ -220,10 +223,3 @@ form.addEventListener('submit', (e) => {
         alert('Incorrect user inputs');
     }
 });
-
-
-//listens for submission, if all values are true , 
-//form.addEventListener('submit', (e) => {
-  //  const nameValue = e.target.userName.value();
-    //const Regex = 
-//

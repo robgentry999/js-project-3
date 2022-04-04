@@ -115,12 +115,15 @@ const form = document.querySelector('form');
 //STEP 8
 //for each funtion, tests if user input matches with the regex, and adds error message if wrong
 function isValidName () {
+    //regex matches beginning of string with word + whitespace + word and ends, 
     const nameRegEx = /^[\w]+\s*[\w]+$/.test(userName.value);
     if (nameRegEx === true) {
+        //adds valid class, and sets comment display to none
         userName.parentNode.className='valid';
         userName.parentNode.lastElementChild.style.display = 'none';
         return nameRegEx
     } else {
+        //adds not-valid class, sets style to block, and sets text to error message
         userName.parentNode.className='not-valid';
         userName.parentNode.lastElementChild.style.display = 'block';
         userName.parentNode.lastElementChild.textContent = 'You sure this is your name?'
@@ -129,6 +132,7 @@ function isValidName () {
 }
 
 function isValidEmail () {
+    //regex matches beginning of string with any character + @ character + . + letters from a-z
     const emailRegEx =  /^[^@]+@[^@.]+\.[a-z]+$/i.test(userEmail.value);
     if (emailRegEx === true) {
         userEmail.parentNode.className='valid';
@@ -144,16 +148,22 @@ function isValidEmail () {
 
 function isValidActivities () {
     let activitiesBox = document.getElementById("activities-box")
+    //if value of activities does not equal 0, returns true
     if (total !== 0) {
+        //replaces the not valid class name with valid, 
+        activitiesBox.parentNode.classList.replace('not-valid', 'valid');
+        activitiesBox.parentNode.lastElementChild.style.display = 'none';
         return true
     } else {
-        activitiesBox.parentNode.className='not-valid';
+        //adds not-valid class to activities box
+        activitiesBox.parentNode.classList.add('not-valid');
         activitiesBox.parentNode.lastElementChild.style.display = 'block';
         activitiesBox.parentNode.lastElementChild.textContent = 'Please choose at least one'
     }
 }
 
 function isValidCardNumber () {
+    //regex tests start of string,matches any digits between 13 and 16 characters 
     const cardNumberRegEx = /^\d{13,16}$/.test(userCard.value)
     if (cardNumberRegEx === true) {
         userCard.parentNode.className='valid';
@@ -167,6 +177,7 @@ function isValidCardNumber () {
     }
 }
 function isValidZipCode () {
+    //regex tests start of string, matches number with 5 digits
     const zipRegEx = /^[0-9]{5}$/.test(userZip.value)
     if (zipRegEx === true) {
         userZip.parentNode.className='valid';
@@ -181,6 +192,7 @@ function isValidZipCode () {
 }
 
 function isValidCvv () {
+    //regex tests start of string, matches number with 3 digits
     const CvvRegEx = /^\d{3}$/.test(userCcv.value)
     if (CvvRegEx === true) {
         userCcv.parentNode.className='valid';
@@ -212,6 +224,7 @@ form.addEventListener('submit', (e) => {
     
     if (isValidName() && isValidEmail() && isValidActivities() && isValidPayment()) {
         alert('form submited');
+        e.preventDefault();
     } else {
         e.preventDefault();
         isValidName();

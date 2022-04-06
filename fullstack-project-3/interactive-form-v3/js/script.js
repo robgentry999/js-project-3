@@ -53,8 +53,8 @@ for(let i = 1; i < childColor.length; i++){
 //
 
 //Variables for step 6
-const registerbox = document.querySelectorAll('checkbox');
 const registergroup = document.getElementById('activities');
+const registerbox = registergroup.querySelectorAll('input[type=checkbox]');
 const totalp = document.getElementById('activities-cost');
 let total = 0;
 //STEP 6 
@@ -223,7 +223,6 @@ function isValidPayment () {
 form.addEventListener('submit', (e) => {
     
     if (isValidName() && isValidEmail() && isValidActivities() && isValidPayment()) {
-        alert('form submited');
         e.preventDefault();
     } else {
         e.preventDefault();
@@ -236,3 +235,13 @@ form.addEventListener('submit', (e) => {
         alert('Incorrect user inputs');
     }
 });
+//  Recent Activities Accessibility
+for (let i=0; i < registerbox.length; i++) {
+    registerbox[i].addEventListener('focus', (e) => {
+        e.target.parentElement.classList.add('focus');
+    });
+
+    registerbox[i].addEventListener('blur', (e) => {
+        e.target.parentElement.classList.remove('focus');
+    });
+}

@@ -223,7 +223,7 @@ function isValidPayment () {
 form.addEventListener('submit', (e) => {
     
     if (isValidName() && isValidEmail() && isValidActivities() && isValidPayment()) {
-        e.preventDefault();
+        alert('Form Submitted');
     } else {
         e.preventDefault();
         isValidName();

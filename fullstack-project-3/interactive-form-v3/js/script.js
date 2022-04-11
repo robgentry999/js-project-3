@@ -213,10 +213,12 @@ function isValidPayment () {
         isValidCardNumber()
         isValidCvv()
         isValidZipCode()  
+        return true  
         }  
-    return true     
-    }
-
+        else {
+            return false
+        }
+    } 
     
  // Event listener for submitting the form   
 
@@ -224,6 +226,7 @@ form.addEventListener('submit', (e) => {
     
     if (isValidName() && isValidEmail() && isValidActivities() && isValidPayment()) {
         alert('Form Submitted');
+        e.preventDefault();
     } else {
         e.preventDefault();
         isValidName();

@@ -211,12 +211,16 @@ function isValidCvv () {
 function isValidPayment () {
     if (paymentselect.value === 'credit-card') {
         if (isValidCardNumber() && isValidCvv && isValidZipCode) {
-        return true  ;
+        return true  
         } 
         else{
-            return false;
+            return false
         }
-    } 
+    } else if (paymentselect.value === 'paypal') {
+        return true
+    } else if (paymentselect.value === 'bitcoin'){
+        return true 
+}
 }
  
  // Event listener for submitting the form   

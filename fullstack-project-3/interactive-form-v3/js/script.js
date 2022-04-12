@@ -210,7 +210,7 @@ function isValidCvv () {
 
 function isValidPayment () {
     if (paymentselect.value === 'credit-card') {
-        if (isValidCardNumber() && isValidCvv && isValidZipCode) {
+        if (isValidCardNumber() && isValidCvv() && isValidZipCode()) {
         return true  
         } 
         else{

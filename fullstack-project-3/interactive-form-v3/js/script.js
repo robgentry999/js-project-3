@@ -12,7 +12,6 @@ const other = document.getElementById('other');
 //STEP 3 Adds focus to username input and sets other input to none
 userName.focus();
 otherTextField.style.display = "none";
-shirtColor.style.display = "none";
 //
 
 
@@ -31,8 +30,7 @@ jobRole.addEventListener('change', e => {
 
 //Variables for step 5
 const jspuns = document.getElementsByClassName('jspuns');
-console.log(jspuns);
-
+shirtColor.style.setAttribute = "disabled";
 designSelect.addEventListener('change', (e) => {
 
 for(let i = 1; i < childColor.length; i++){
@@ -42,6 +40,7 @@ for(let i = 1; i < childColor.length; i++){
 
     if(dataTheme === targetValue){
         shirtColor.style.display = "block";
+        shirtColor.style.removeProperty = "disabled";
         child.hidden = false; 
         child.setAttribute('data-theme', dataTheme)
         child.selected = true;
@@ -116,7 +115,7 @@ const form = document.querySelector('form');
 //for each funtion, tests if user input matches with the regex, and adds error message if wrong
 function isValidName () {
     //regex matches beginning of string with word + whitespace + word and ends, 
-    const nameRegEx = /^[\w]+\s*[\w]+$/.test(userName.value);
+    const nameRegEx = /^.$/.test(userName.value);
     if (nameRegEx === true) {
         //adds valid class, and sets comment display to none
         userName.parentNode.className='valid';
@@ -228,7 +227,6 @@ function isValidPayment () {
 form.addEventListener('submit', (e) => {
     
     if (isValidName() && isValidEmail() && isValidActivities() && isValidPayment()) {
-        alert('Form Submitted');
     } else {
         e.preventDefault();
         isValidName();

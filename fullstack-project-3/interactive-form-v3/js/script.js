@@ -115,7 +115,7 @@ const form = document.querySelector('form');
 //for each funtion, tests if user input matches with the regex, and adds error message if wrong
 function isValidName () {
     //regex matches beginning of string with word + whitespace + word and ends, 
-    const nameRegEx = /^.$/.test(userName.value);
+    const nameRegEx = /^[a-zA-Z0-9_ ]*$/.test(userName.value);
     if (nameRegEx === true) {
         //adds valid class, and sets comment display to none
         userName.parentNode.className='valid';
